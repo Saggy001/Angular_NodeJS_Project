@@ -1,0 +1,29 @@
+.side-bar{
+    overflow: hidden;
+    width: 10vw;
+    height: 100vh;
+    background-color: rgb(61, 60, 60);
+}
+ul{
+    width: 10%;
+    padding-top: 60px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    
+}
+li{
+    margin-top: 20px;
+}
+.anch{
+    color:rgb(109, 109, 107);
+    text-decoration: none;
+    cursor: pointer;
+}
+.anch:hover{
+    color: rgb(204, 198, 198);
+}
+.active{
+    color: white;
+}

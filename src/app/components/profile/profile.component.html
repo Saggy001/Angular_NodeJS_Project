@@ -1,0 +1,62 @@
+<div class="box">
+    <img class="userimg" [src]="imageUrl" (error)="changeImage()"><br><br>
+    <label>Change Profile</label>
+    <input type='file' name='image' (change)="onFileSelect($event)">
+    
+    <form class="form" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group d-flex">
+                    <label class="m-auto">Username:</label>
+                    <input 
+                    class="form-control" [class.is-invalid]="name?.invalid && name?.touched"
+                     type='text' formControlName='name'>
+                    <div *ngIf="name?.invalid && name?.touched">
+                        <small class="text-danger" *ngIf="name?.errors?.['required']">Username is required</small>
+                        <small class="text-danger" *ngIf="name?.errors?.['minlength']">Username must be at least 3 characters</small>
+                        <small class="text-danger" *ngIf="name?.errors?.['maxlength']">Username must be at most 25 characters</small>
+                    </div>
+                </div>        
+            </div>
+        
+            <div class="col-md-6">
+                <div class="form-group d-flex">
+                    <label class="m-auto">Email:</label>
+                    <input class="form-control" [class.is-invalid]="email?.invalid && email?.touched"
+                    type='text' formControlName='email'>
+                    <small class="text-danger" *ngIf="err">Email is already in use</small>
+                    <div *ngIf="email?.invalid && email?.touched">
+                        <small class="text-danger" *ngIf="email?.errors?.['required']">Email is required</small>
+                        <small class="text-danger" *ngIf="email?.errors?.['email']">Email is invalid</small>
+                    </div>
+                </div>        
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group d-flex">
+                    <label class="m-auto">Age:</label>
+                    <input class="form-control" [class.is-invalid]="age?.invalid && age?.touched" 
+                    type='number'  formControlName='age'>
+                    <div *ngIf="age?.invalid && age?.touched">
+                        <small class="text-danger" *ngIf="age?.errors?.['min']">Age must be greater than 0</small>
+                        <small class="text-danger" *ngIf="age?.errors?.['max']">Age must be smaller than 150</small>
+                    </div>
+                </div>        
+            </div>
+        
+            <div class="col-md-6">
+                <div class="form-group d-flex">
+                    <label class="m-auto">DOB:</label>
+                    <input class="form-control" type="date" (keydown)="disableDate()" formControlName="dob">
+                </div>        
+            </div>
+        </div>
+
+        <div class="form-group mt-4">
+            <input class="form-control" class="btn btn-success" type="submit" value="Save">
+        </div>
+    </form>
+    
+</div>

@@ -1,0 +1,56 @@
+<div class="user-box">
+    <div class='heading'>
+        <h2 class="title">Users</h2>
+        <div class="search-box">
+            <label >Search </label>
+        <input (keyup)="updateList()" type="text" [(ngModel)]="search">
+        </div>
+        <a class="addUsers" routerLink="/home/addUser">+ Add Users</a>
+    </div>
+
+    <div>
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th title="Sort by Id" class="link" (click)="sortId()" scope="col">Id</th>
+                <th scope="col">Image</th>
+                <th title="Sort by Name" class="link" (click)="sortName()" scope="col">Name</th>
+                <th title="Sort by Age" class="link" (click)="sortAge()" scope="col">Age</th>
+                <th title="Sort by Email" class="link" (click)="sortEmail()" scope="col">Email</th>
+                <th scope="col">DOB</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let l of users;let i=index;">
+                <th scope="row">{{l.id}}</th>
+                <td >
+                    <img class="userimg" [src]="baseImageUrl + l.image" (error)="changeImage($event)"/>
+                </td>
+                <td>{{l.name}}</td>
+                <td [ngSwitch] ="l.age">
+                    <span *ngSwitchCase="'null'"></span>
+                    <span *ngSwitchDefault>{{l.age}}</span>
+                </td>
+                <td>{{l.email}}</td>
+                <td [ngSwitch] ="l.dob">
+                  <span *ngSwitchCase="'null'"></span>
+                  <span *ngSwitchDefault>{{l.dob}}</span>
+              </td>
+                <td>
+                    <button (click)="updateUser(l.id)" class="btn btn-primary mr-3">Update</button>
+                    <button (click)="deleteUser(l.id , i)" class="btn btn-danger">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    
+    <div class='pagination'>
+      <button *ngIf="page >= 2" (click)="prevBtn()">  Prev </button>   
+      <div *ngFor="let k of page_arr;let j=index;">
+        <button [class.active] = "page == j+1" (click)="changePage(j+1)">{{j+1}}</button>
+      </div>
+        <button *ngIf="page < no_of_pages" (click)="nextBtn()">  Next </button>           
+      </div>
+</div>

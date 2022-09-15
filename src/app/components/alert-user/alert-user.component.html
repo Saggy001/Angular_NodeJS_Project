@@ -1,0 +1,13 @@
+<div> 
+    Seconds changing in Time: {{ timeChange | async }}
+
+    <p (click) = "yo()">{{ decimalNum1 | currency:'EUR':true}}</p> 
+    <p>{{ price | currency:'INR' }}</p> 
+
+    <div style="text-align:center"> 
+        <p ngNonBindable>{{ jsonData }}</p> (1) 
+        <p>{{ jsonData }}</p> 
+        <p ngNonBindable>{{ jsonData | json }}</p> 
+        <p>{{ jsonData | json }}</p> 
+     </div> 
+ </div>
